@@ -22,9 +22,9 @@ export function EventsPage({ onNavigate }: EventsPageProps) {
   return (
     <div className="min-h-screen bg-muted/20">
       {/* ===== Sticky tabs di bawah Header ===== */}
-      <div className="sticky top-14 z-40 bg-background/90 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b">
-        <div className="px-4 pt-3 pb-3 -mx-4">
-          <Tabs value={activeTab} onValueChange={setActiveTab} className="px-4">
+      <div className="sticky top-14 z-40 bg-background border-b">
+        <div className="px-4 pt-3 pb-3">
+          <Tabs value={activeTab} onValueChange={setActiveTab}>
             <TabsList className="flex w-full gap-2 bg-transparent p-0">
               <TabsTrigger
                 value="available"

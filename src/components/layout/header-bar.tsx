@@ -21,9 +21,8 @@ export function HeaderBar({
 
   return (
     <div
-      className={`flex items-center justify-between border-b border-border
-                  sticky top-0 z-50 h-14 px-4
-                  bg-background/90 backdrop-blur supports-[backdrop-filter]:bg-background/60`}
+      className="sticky top-0 z-50 h-14 bg-background border-b
+             flex items-center justify-between px-4"
       style={{ paddingTop: "env(safe-area-inset-top)" }}
     >
       <div className="w-8">

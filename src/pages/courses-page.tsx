@@ -23,23 +23,21 @@ export function CoursesPage({ onNavigate }: CoursesPageProps) {
 
   return (
     <div className="min-h-screen bg-muted/20">
-      {/* ===== Sticky toolbar di bawah Header ===== */}
-      <div className="sticky top-14 z-40 bg-background/90 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b">
+      {/* === Sticky toolbar tepat di bawah header === */}
+      <div className="sticky top-14 z-40 bg-background border-b">
         <div className="px-4 pt-3 pb-4 space-y-3">
           <SearchInput
             placeholder="Search courses..."
             value={searchQuery}
             onChange={setSearchQuery}
-            className="h-11"
           />
 
-          <div className="-mx-4 px-4">
-            <CategoryPills
-              categories={["All", ...categories]}
-              selectedCategory={selectedCategory}
-              onCategorySelect={setSelectedCategory}
-            />
-          </div>
+          {/* perhatikan: TIDAK lagi menambah 'All' manual */}
+          <CategoryPills
+            categories={categories}
+            selectedCategory={selectedCategory}
+            onCategorySelect={setSelectedCategory}
+          />
 
           <p className="text-sm text-muted-foreground">
             {filteredCourses.length} courses found
