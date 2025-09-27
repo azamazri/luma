@@ -1,66 +1,62 @@
-import { useState } from 'react';
-import { SearchInput } from '../components/ui/search-input';
-import { CategoryPills } from '../components/ui/category-pills';
-import { CourseCard } from '../components/ui/course-card';
-import { mockCourses, categories } from '../data/mock-data';
+import { useState } from "react";
+import { SearchInput } from "../components/ui/search-input";
+import { CategoryPills } from "../components/ui/category-pills";
+import { CourseCard } from "../components/ui/course-card";
+import { mockCourses, categories } from "../data/mock-data";
 
 interface CoursesPageProps {
   onNavigate: (screen: string, params?: any) => void;
 }
 
 export function CoursesPage({ onNavigate }: CoursesPageProps) {
-  const [searchQuery, setSearchQuery] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState('All');
+  const [searchQuery, setSearchQuery] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("All");
 
-  const filteredCourses = mockCourses.filter(course => {
-    const matchesSearch = course.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                         course.description.toLowerCase().includes(searchQuery.toLowerCase());
-    const matchesCategory = selectedCategory === 'All' || course.category === selectedCategory;
+  const filteredCourses = mockCourses.filter((course) => {
+    const matchesSearch =
+      course.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      course.description?.toLowerCase().includes(searchQuery.toLowerCase());
+    const matchesCategory =
+      selectedCategory === "All" || course.category === selectedCategory;
     return matchesSearch && matchesCategory;
   });
 
   return (
-    <div className="flex flex-col min-h-full bg-background pt-16">
-      {/* Sticky Header */}
-      <div className="fixed top-16 left-0 right-0 bg-background z-10 border-b border-border/50">
-        {/* Search */}
-        <div className="p-4 pb-2">
+    <div className="min-h-screen bg-muted/20">
+      {/* ===== Sticky toolbar di bawah Header ===== */}
+      <div className="sticky top-14 z-40 bg-background/90 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b">
+        <div className="px-4 pt-3 pb-4 space-y-3">
           <SearchInput
             placeholder="Search courses..."
             value={searchQuery}
             onChange={setSearchQuery}
+            className="h-11"
           />
-        </div>
 
-        {/* Categories */}
-        <CategoryPills
-          categories={categories}
-          selectedCategory={selectedCategory}
-          onCategorySelect={setSelectedCategory}
-        />
+          <div className="-mx-4 px-4">
+            <CategoryPills
+              categories={["All", ...categories]}
+              selectedCategory={selectedCategory}
+              onCategorySelect={setSelectedCategory}
+            />
+          </div>
 
-        {/* Results Header */}
-        <div className="px-4 py-2 pb-4">
           <p className="text-sm text-muted-foreground">
             {filteredCourses.length} courses found
-            {selectedCategory !== 'All' && ` in ${selectedCategory}`}
-            {searchQuery && ` for "${searchQuery}"`}
           </p>
         </div>
       </div>
 
-      {/* Scrollable Courses Grid */}
-      <div className="px-4 pb-4 flex-1 overflow-auto mt-36">
+      {/* ===== Konten list ===== */}
+      <div className="px-4 pb-8 space-y-4">
         {filteredCourses.length > 0 ? (
-          <div className="grid grid-cols-1 gap-4">
-            {filteredCourses.map((course) => (
-              <CourseCard
-                key={course.id}
-                {...course}
-                onPress={() => onNavigate('course-detail', { courseId: course.id })}
-              />
-            ))}
-          </div>
+          filteredCourses.map((course) => (
+            <CourseCard
+              key={course.id}
+              {...course}
+              onClick={() => onNavigate("course-detail", { id: course.id })}
+            />
+          ))
         ) : (
           <div className="flex flex-col items-center justify-center py-12">
             <div className="w-16 h-16 bg-muted rounded-full flex items-center justify-center mb-4">
