@@ -24,7 +24,7 @@ export function CoursesPage({ onNavigate }: CoursesPageProps) {
   return (
     <div className="min-h-screen bg-muted/20">
       {/* === Sticky toolbar tepat di bawah header === */}
-      <div className="sticky top-14 z-40 bg-background border-b">
+      <div className="sticky top-20 z-40 bg-background border-b">
         <div className="px-4 pt-3 pb-4 space-y-3">
           <SearchInput
             placeholder="Search courses..."

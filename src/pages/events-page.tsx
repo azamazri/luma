@@ -22,14 +22,14 @@ export function EventsPage({ onNavigate }: EventsPageProps) {
   return (
     <div className="min-h-screen bg-muted/20">
       {/* ===== Sticky tabs di bawah Header ===== */}
-      <div className="sticky top-14 z-40 bg-background border-b">
+      <div className="sticky top-20 z-40 bg-background border-b">
         <div className="px-4 pt-3 pb-3">
           <Tabs value={activeTab} onValueChange={setActiveTab}>
             <TabsList className="flex w-full gap-2 bg-transparent p-0">
               <TabsTrigger
                 value="available"
                 className={`shrink-0 px-5 h-9 rounded-full text-sm font-medium
-                            data-[state=active]:bg-emerald-600 data-[state=active]:text-white
+                            data-[state=active]:bg-green-600 data-[state=active]:text-white
                             bg-muted text-muted-foreground`}
               >
                 Available ({availableEvents.length})
@@ -37,7 +37,7 @@ export function EventsPage({ onNavigate }: EventsPageProps) {
               <TabsTrigger
                 value="closed"
                 className={`shrink-0 px-5 h-9 rounded-full text-sm font-medium
-                            data-[state=active]:bg-emerald-600 data-[state=active]:text-white
+                            data-[state=active]:bg-red-600 data-[state=active]:text-white
                             bg-muted text-muted-foreground`}
               >
                 Closed ({closedEvents.length})
@@ -45,7 +45,7 @@ export function EventsPage({ onNavigate }: EventsPageProps) {
               <TabsTrigger
                 value="coming-soon"
                 className={`shrink-0 px-5 h-9 rounded-full text-sm font-medium
-                            data-[state=active]:bg-emerald-600 data-[state=active]:text-white
+                            data-[state=active]:bg-orange-500 data-[state=active]:text-white
                             bg-muted text-muted-foreground`}
               >
                 Coming ({comingSoonEvents.length})
