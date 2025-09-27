@@ -18,7 +18,12 @@ export function HeaderBar({
   const isMainPages = ["Courses", "My Tickets", "Events", "Profile"].includes(
     title
   );
-
+  // ⬇️ Tambahan: untuk Courses & Events, pakai judul besar + header lebih tinggi
+  const isLargeTitle = title === "Courses" || title === "Events";
+  const headerHeightClass = isLargeTitle ? "h-20" : "h-14"; // 80px vs 56px
+  const titleClass = isLargeTitle
+    ? "text-2xl font-semibold"
+    : "text-lg font-medium";
   return (
     <div
       className="sticky top-0 z-50 h-14 bg-background border-b
