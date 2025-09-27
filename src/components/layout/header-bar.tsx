@@ -7,7 +7,6 @@ interface HeaderBarProps {
   onBack?: () => void;
   action?: React.ReactNode;
   showBack?: boolean;
-  largeTitle?: boolean;
 }
 
 export function HeaderBar({
@@ -15,9 +14,10 @@ export function HeaderBar({
   onBack,
   action,
   showBack = true,
-  largeTitle = false,
 }: HeaderBarProps) {
-  const headerHeight = largeTitle ? "h-20" : "h-14";
+  const isMainPages = ["Courses", "My Tickets", "Events", "Profile"].includes(
+    title
+  );
 
   return (
     <div
